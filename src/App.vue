@@ -3,6 +3,10 @@
   import Movie from "./components/Movie.vue";
 
   const movieStore = useMovieStore();
+
+  const setTab = (id) => {
+    movieStore.setActiveTab(id);
+  };
 </script>
 
 <template>
@@ -19,11 +23,13 @@
     <div class="tabs">
       <button
         :class="['btn', { btn_green: movieStore.activeTab === 1 }]"
+        @click="setTab(1)"
       >
         Favorite
       </button>
       <button
         :class="['btn', { btn_green: movieStore.activeTab === 2 }]"
+        @click="setTab(2)"
       >
         Search
       </button>
@@ -34,7 +40,10 @@
       class="movies"
     >
       <div>
-        <h3>Watched Movies (count: {{ movieStore.watchedMovies.length }})</h3>
+        <h3>
+          Watched Movies (count:
+          {{ movieStore.watchedMovies.length }})
+        </h3>
         <Movie
           v-for="(movie, index) in movieStore.watchedMovies"
           :key="movie.id"
