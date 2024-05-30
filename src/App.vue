@@ -1,6 +1,7 @@
 <script setup>
   import { useMovieStore } from "./stores//MovieStore";
   import Movie from "./components/Movie.vue";
+  import Search from "./components/Search.vue";
 
   const movieStore = useMovieStore();
 
@@ -65,7 +66,7 @@
       v-else
       class="search"
     >
-      Search
+      <Search />
     </div>
   </main>
 </template>
