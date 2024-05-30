@@ -3,6 +3,18 @@ import { defineStore } from "pinia";
 export const useMovieStore = defineStore('movieStore', {
   state: () => ({
     movies: [
+      // TODO: Переделать модель
+
+      // Актуальная модель:
+      // {
+      //   id: "obj.id",
+      //   name: 'obj.name',
+      //   img: 'obj.poster.previewUrl',
+      //   rating: 'obj.internalRating',
+      //   description: 'obj.description',
+      //   short_description: 'obj.shortDescription',
+      //   year: 'obj.year',
+      // }
       {
         id: 1,
         original_title: "Spider-Man",
@@ -22,7 +34,7 @@ export const useMovieStore = defineStore('movieStore', {
         isWatched: false,
       },
     ],
-    activeTab: 1,
+    activeTab: 2,
   }),
 
   // Getters рекомендуется использовать тогда, когда мы хотим что-то изменить
@@ -36,6 +48,8 @@ export const useMovieStore = defineStore('movieStore', {
     }
   },
 
+  // TODO: Actions - используется для изменения какого-нибудь состояния(state)
+  // mutations - убрали и в pinia для синхронных и ассинхронных операций используются actions.
   actions: {
     setActiveTab(id) {
       this.activeTab = id;
