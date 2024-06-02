@@ -1,7 +1,9 @@
 <script setup>
-  import { useMovieStore } from "../stores//MovieStore";
+  import { useMovieStore } from "../stores/MovieStore";
+  import { useSearchStore } from "../stores/SearchStore";
 
   const movieStore = useMovieStore();
+  const searchStore = useSearchStore();
 
   const props = defineProps({
     movie: {
@@ -9,6 +11,7 @@
       required: true,
       default: () => {},
     },
+    isSearch: Boolean,
   });
 
   const toggleWatched = (id) => {
@@ -23,16 +26,23 @@
 <template>
   <div class="movie">
     <img
-      :src="`https://images.justwatch.com/poster/${movie.poster_path}`"
-      :alt="movie.original_title"
+      :src="movie.img"
+      :alt="movie.name"
       class="movie-img"
     />
     <div>
       <div class="movie-name">
-        {{ movie.original_title }} ({{ movie.release_date }})
+        {{ movie.name }} ({{ movie.year }})
       </div>
-      <span class="movie-overview">{{ movie.overview }}</span>
-      <div class="movie-buttons">
+
+      <div class="movie-desc">
+        {{ movie.short_description || "Описание отсутствует" }}
+      </div>
+
+      <div
+        v-if="!isSearch"
+        class="movie-buttons"
+      >
         <button
           class="btn movie-buttons-watched"
           @click="toggleWatched(movie.id)"
@@ -45,6 +55,18 @@
           @click="deleteMovie(movie.id)"
         >
           Delete
+        </button>
+      </div>
+
+      <div
+        v-else
+        class="movie-buttons"
+      >
+        <button
+          class="btn btn_green"
+          @click="searchStore.addMovies(movie)"
+        >
+          Add
         </button>
       </div>
     </div>
@@ -80,8 +102,7 @@
     margin-bottom: 20px;
   }
 
-  .movie-overview {
-    display: block;
+  .movie-desc {
     margin-bottom: 20px;
   }
 

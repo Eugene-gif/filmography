@@ -2,7 +2,7 @@
   import { ref } from "vue";
   import { useSearchStore } from "../stores/SearchStore";
 
-  import MovieNew from "./MovieNew.vue";
+  import Movie from "./Movie.vue";
   import Loader from "./Loader.vue";
 
   const searchStore = useSearchStore();
@@ -20,7 +20,7 @@
   </form>
   <Loader v-if="searchStore.loader" />
   <div v-else>
-    <MovieNew
+    <Movie
       v-for="movie in searchStore.movies"
       :key="movie.id"
       :movie="movie"

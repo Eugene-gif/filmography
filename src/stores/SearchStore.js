@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { useMovieStore } from "./MovieStore";
 
 const url = "https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=10&query=";
 
@@ -17,7 +18,7 @@ export const useSearchStore = defineStore('searchStore', {
         }
       })
       const data = await res.json();
-      console.log(data);
+      console.log('Data: ', data);
       this.movies = data.docs.map((obj) => {
         return {
           id: obj.id,
@@ -32,6 +33,12 @@ export const useSearchStore = defineStore('searchStore', {
 
       console.log('Movies: ', this.movies);
       this.loader = false;
+    },
+    addMovies(obj) {
+      const movieStore = useMovieStore();
+      movieStore.movies.push({ ...obj, isWatched: false });
+      movieStore.activeTab = 1;
+      console.log(obj);
     }
   }
 });
