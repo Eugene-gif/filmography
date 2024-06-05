@@ -53,7 +53,7 @@
       </div>
 
       <div>
-        <h3>All Movies (count: {{ movieStore.totalCountMovies }})</h3>
+        <h3>All Movies (count: {{ movieStore.movies.length }})</h3>
         <Movie
           v-for="(movie, index) in movieStore.movies"
           :key="movie.id"
