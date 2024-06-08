@@ -18,7 +18,7 @@
         alt="logo"
         class="header-logo"
       />
-      <h2>My Favorite Movies</h2>
+      <h2>Мои любимые фильмы</h2>
     </header>
 
     <div class="tabs">
@@ -26,13 +26,21 @@
         :class="['btn', { btn_green: movieStore.activeTab === 1 }]"
         @click="setTab(1)"
       >
-        Favorite
+        Избранное
       </button>
+
       <button
         :class="['btn', { btn_green: movieStore.activeTab === 2 }]"
         @click="setTab(2)"
       >
-        Search
+        Просмотренные
+      </button>
+
+      <button
+        :class="['btn', { btn_green: movieStore.activeTab === 3 }]"
+        @click="setTab(3)"
+      >
+        Поиск
       </button>
     </div>
 
@@ -41,19 +49,7 @@
       class="movies"
     >
       <div>
-        <h3>
-          Watched Movies (count:
-          {{ movieStore.watchedMovies.length }})
-        </h3>
-        <Movie
-          v-for="(movie, index) in movieStore.watchedMovies"
-          :key="movie.id"
-          :movie="movie"
-        />
-      </div>
-
-      <div>
-        <h3>All Movies (count: {{ movieStore.totalCountMovies }})</h3>
+        <h3>Все фильмы (count: {{ movieStore.movies.length }})</h3>
         <Movie
           v-for="(movie, index) in movieStore.movies"
           :key="movie.id"
@@ -63,7 +59,24 @@
     </div>
 
     <div
-      v-else
+      v-if="movieStore.activeTab === 2"
+      class="movies"
+    >
+      <div>
+        <h3>
+          Просмотренные фильмы (count:
+          {{ movieStore.watchedMovies.length }})
+        </h3>
+        <Movie
+          v-for="(movie, index) in movieStore.watchedMovies"
+          :key="movie.id"
+          :movie="movie"
+        />
+      </div>
+    </div>
+
+    <div
+      v-if="movieStore.activeTab === 3"
       class="search"
     >
       <Search />
@@ -72,6 +85,9 @@
 </template>
 
 <style lang="css">
+  html {
+    scrollbar-gutter: stable;
+  }
   .header {
     display: flex;
     justify-content: center;
@@ -84,7 +100,8 @@
   }
   .btn {
     border: none;
-    width: 100px;
+    width: auto;
+    min-width: 100px;
     height: 40px;
     font-size: 14px;
     margin: 0 10px;

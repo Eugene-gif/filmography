@@ -1,0 +1,9 @@
+{
+  "id": "obj.id",
+  "name": "obj.name",
+  "img": "obj.poster.previewUrl",
+  "rating": "obj.internalRating || obj.rating.kp",
+  "description": "obj.description",
+  "short_description": "obj.shortDescription",
+  "year": "obj.year"
+}
