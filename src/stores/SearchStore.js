@@ -57,6 +57,7 @@ export const useSearchStore = defineStore("searchStore", () => {
         'X-API-KEY': 'T4Z1TPA-PAT4SN1-PW58S2K-J4400F0'
       }
     })
+    
     const data = await res.json();
     // console.log('Data: ', data);
     movies.value = data.docs.map((obj) => {
