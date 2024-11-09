@@ -1,7 +1,44 @@
-# Vue 3 + Vite
+# [Проект: "Фильмография"](https://eugene-gif.github.io/template-2023/#home)
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Описание:
+Pet-проект. Фильмография - это проект для поиска и сохранения ваших любимых фильмов.
+Можно найти практически любой фильм или сериал, сохранить его в избранное, добавить его в список просмотренных, или добавить его в список непросмотренных фильмов. Также можно удалить. Используемые технологи: API Кинопоиска, Vite, Vue3, pinia, JS, CSS.
 
-## Recommended IDE Setup
+### Инициализация
+```
+npm i
+```
 
-- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
+### Запуск
+```
+npm run dev
+```
+
+### Сборка для продакшена
+```
+npm run build
+```
+
+
+### Деплой проекта:
+##### 1. Создание и настройка репозитория.
+##### 2. Установка в devDependencies gh-pages:
+```
+npm i gh-pages --save-dev
+```
+##### 3. Записываем в файл package.json в блок 'scripts':
+```
+"predeploy": "npm run build",
+"deploy": "gh-pages -d dist"
+```
+##### 4. В vite.config.js добавляем:
+```
+export default defineConfig({
+  base: "/name-project",
+})
+```
+##### 5. При необходимости вызываем команду:
+```
+npm run deploy
+```
+После ввода команды проект автоматически деплоится в ветку gh-pages

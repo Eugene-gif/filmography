@@ -46,6 +46,10 @@ export const useMovieStore = defineStore("movieStore", () => {
     return movies.value.filter((el) => el.isWatched)
   });
 
+  const unWatchedMovies = computed(() => {
+    return movies.value.filter((el) => el.isWatched === false)
+  });
+
   const setActiveTab = (id) => {
     activeTab.value = id;
   }
@@ -67,6 +71,7 @@ export const useMovieStore = defineStore("movieStore", () => {
     movies,
     activeTab,
     watchedMovies,
+    unWatchedMovies,
     setActiveTab,
     toggleWatched,
     deleteMovie
