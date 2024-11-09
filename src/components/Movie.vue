@@ -33,7 +33,7 @@
   <div class="movie">
     <div class="movie-img">
       <img
-        :src="movie.img ? movie.img : '/empty.png'"
+        :src="movie.img ? movie.img : 'empty.png'"
         :alt="movie.name"
       />
     </div>
