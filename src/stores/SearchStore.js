@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { useMovieStore } from "./MovieStore";
 import { ref } from 'vue';
 
-const url = `${import.meta.env.VITE_API_URL}?page=1&limit=20&query=`;
+const url = `${import.meta.env.VITE_API_URL}movie/search?page=1&limit=20&query=`;
 
 // _____ Composition api _____
 export const useSearchStore = defineStore("searchStore", () => {
@@ -23,7 +23,7 @@ export const useSearchStore = defineStore("searchStore", () => {
       return {
         id: obj.id,
         name: obj.name,
-        img: obj.poster.previewUrl,
+        img: obj.poster?.previewUrl ?? obj.logo?.previewUrl ?? obj.backdrop?.previewUrl ?? 'empty.png',
         rating: obj.internalRating,
         description: obj.description,
         short_description: obj.shortDescription,

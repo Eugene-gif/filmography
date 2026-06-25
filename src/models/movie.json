@@ -1,7 +1,7 @@
 {
   "id": "obj.id",
   "name": "obj.name",
-  "img": "obj.poster.previewUrl",
+  "img": "obj.poster.previewUrl ?? obj.logo.previewUrl ?? obj.backdrop.previewUrl",
   "rating": "obj.internalRating || obj.rating.kp",
   "description": "obj.description",
   "short_description": "obj.shortDescription",

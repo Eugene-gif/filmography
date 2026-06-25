@@ -16,44 +16,26 @@
 </script>
 
 <template>
-  <form
-    @submit.prevent="
-      searchMovie ? searchStore.getMovies(searchMovie) : ''
-    "
-  >
-    <input
-      v-model="searchMovie"
-      type="text"
-      class="search-input"
-      placeholder="Название фильма"
-      @focus="focus = true"
-      @blur="focus = false"
-    />
-    <button
-      class="search-btn"
-      type="submit"
-      :disabled="!searchMovie"
-    >
+  <form @submit.prevent="
+    searchMovie ? searchStore.getMovies(searchMovie) : ''
+    ">
+    <input v-model="searchMovie" type="text" class="search-input"
+      placeholder="Название фильма" @focus="focus = true"
+      @blur="focus = false" />
+    <button class="search-btn" type="submit" :disabled="!searchMovie">
       Найти
     </button>
   </form>
 
-  <button
-    v-if="searchStore.movies.length"
-    @click="clearSearch"
-    class="clear-btn"
-  >
+  <button v-if="searchStore.movies.length" @click="clearSearch"
+    class="clear-btn">
     Очистить поиск
   </button>
 
   <Loader v-if="searchStore.loader" />
 
-  <MoviesList
-    v-else-if="searchStore.movies.length && !searchStore.loader"
-    title="Найденные фильмы"
-    :movies="searchStore.movies"
-    isSearch
-  />
+  <MoviesList v-else-if="searchStore.movies.length && !searchStore.loader"
+    title="Найденные фильмы" :movies="searchStore.movies" isSearch />
 </template>
 
 <style lang="css" scoped>
@@ -85,7 +67,7 @@
     outline: none;
   }
 
-  .search-input:focus-visible ~ .search-btn {
+  .search-input:focus-visible~.search-btn {
     border: 1px solid #1eb4c3;
     border-left: none;
     outline: none;
@@ -132,6 +114,7 @@
   button[disabled] {
     background-color: #ede5e5;
     cursor: default;
+
     &:hover {
       opacity: 1;
     }
