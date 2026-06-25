@@ -44,7 +44,7 @@
       </div>
 
       <div class="movie-desc">
-        {{ movie.short_description || "Описание отсутствует" }}
+        {{ movie?.short_description || "Описание отсутствует" }}
       </div>
 
       <div
